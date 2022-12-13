@@ -25,7 +25,6 @@ jobs:
           push: true
           image: ghcr.io/lagroucedric/mlops-exam-1-backend
           tags: |
-            type=ref,event=branch
             type=sha
     #build another dockerfile and psuh to ghcr
     
@@ -38,7 +37,6 @@ jobs:
           push: true
           image: ghcr.io/lagroucedric/mlops-exam-1-frontend
           tags: |
-            type=ref,event=branch
             type=sha
 
 
