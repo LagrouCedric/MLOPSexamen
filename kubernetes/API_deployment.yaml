@@ -1,0 +1,43 @@
+# Kubernetes deployment YAML file to quickly deploy a simple container
+# to Kubernetes. For more information, see:
+# https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api
+  labels:
+    app: api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api
+  template:
+    metadata:
+      labels:
+        app: api
+    spec:
+      containers:
+      - name: api
+        image: ghcr.io/lagroucedric/mlops-exam-1-backend:latest
+        ports:
+        - containerPort: 8080
+          name: http
+      #pull secret credentials
+      imagePullSecrets:
+        - name: regcred
+#add service NodePort to open port 30001
+apiVersion: v1
+kind: Service
+metadata:
+  name: svcapi
+  labels:
+    app: svcapi
+spec:
+  type: NodePort
+  ports:
+  - port: 8080
+    targetPort: 8080
+    nodePort: 30001
+  selector:
+    app: api

@@ -1,0 +1,8 @@
+#add environment variables 'NAME' and 'DATE' using a ConfigMap kubernetes yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: exam-1-configmap
+data:
+  NAME: "Cedric Lagrou"
+  DATE: "2021-10-01"
