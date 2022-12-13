@@ -25,8 +25,7 @@ jobs:
           context: .
           file: ./api/exam-1-dockerfile
           push: true
-          tags: |
-            ghcr.io/lagroucedric/mlops-exam-1-backend:latest
+          tags: ghcr.io/lagroucedric/mlops-exam-1-backend:latest
     #build another dockerfile and psuh to ghcr
     
       - name: Build2
