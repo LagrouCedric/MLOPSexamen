@@ -26,7 +26,6 @@ Push it to a registry (Docker Hub or GitHub Container Registry)
 ## 2. Docker API fixes
 - Total points: 3
 - Estimated time: 25 minutes
-
 Make sure to fix the Docker API and let it boot up correctly.
 There is atleast one error somewhere that you can fix in the source code.
 Make sure to get the Docker image tagged as `yourname/mlops-exam-1-backend`.
