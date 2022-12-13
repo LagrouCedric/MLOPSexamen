@@ -23,9 +23,10 @@ jobs:
           context: .
           file: ./api/exam-1-dockerfile
           push: true
-          image: ghcr.io/lagroucedric/mlops-exam-1-backend
           tags: |
-            type=sha
+            ghcr.io/lagroucedric/mlops-exam-1-backend:${{ env.GIT_SHA }}
+            ghcr.io/lagroucedric/mlops-exam-1-backend:latest  
+            
     #build another dockerfile and psuh to ghcr
     
       - name: Build2
@@ -35,7 +36,7 @@ jobs:
           context: .
           file: ./frontend/frontend-dockerfile
           push: true
-          image: ghcr.io/lagroucedric/mlops-exam-1-frontend
+          images: ghcr.io/lagroucedric/mlops-exam-1-frontend
           tags: |
             type=sha
 
