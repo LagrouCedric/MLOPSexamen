@@ -1,0 +1,15 @@
+#add service NodePort to open port 30001
+apiVersion: v1
+kind: Service
+metadata:
+  name: svcapi
+  labels:
+    app: svcapi
+spec:
+  type: NodePort
+  ports:
+  - port: 8080
+    targetPort: 8080
+    nodePort: 30001
+  selector:
+    app: api

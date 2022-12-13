@@ -1,0 +1,26 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: nginx-lagrou-cedric
+ namespace: exam-nginx
+ labels:
+   app: nginx-lagrou-cedric
+spec:
+ replicas: 1
+ selector:
+   matchLabels:
+     app: nginx-lagrou-cedric
+ template:
+   metadata:
+     labels:
+       app: nginx-lagrou-cedric
+   spec:
+     containers:
+     - name: nginx-lagrou-cedric
+       image: nginx:latest
+       ports:
+       - containerPort: 80
+         name: http
+     imagePullSecrets:
+       - name: regcred
