@@ -9,6 +9,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+       run: |
+        echo "GIT_SHA=$(echo ${{ github.sha }} | cut -c1-7)" >> $GITHUB_ENV
       - uses: actions/checkout@v2
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v1
@@ -23,7 +25,9 @@ jobs:
           context: .
           file: ./api/exam-1-dockerfile
           push: true
-          tags: ghcr.io/lagroucedric/mlops-exam-1-backend:latest
+          tags: |
+            ghcr.io/lagroucedric/mlops-exam-1-backend:latest
+            ghcr.io/lagroucedric/mlops-exam-1-backend:${{ env.GIT_SHA }}
     #build another dockerfile and psuh to ghcr
     
       - name: Build2
