@@ -1,0 +1,15 @@
+# create a dockerfile for the flash frontend to use main.py and templates folder
+FROM python:3.7
+# copy the requirements.txt file to the docker image
+COPY frontend/requirements.dev.txt /app/requirements.dev.txt
+
+COPY frontend/main/main.py /app/main.py
+COPY frontend/main/templates /app/templates
+#run requirements.txt
+RUN pip install -r /app/requirements.dev.txt
+#set the working directory
+WORKDIR /app
+EXPOSE 5000
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "5050"]
+
+
