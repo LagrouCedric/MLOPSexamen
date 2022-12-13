@@ -24,9 +24,7 @@ jobs:
           file: ./api/exam-1-dockerfile
           push: true
           tags: ghcr.io/lagroucedric/mlops-exam-1-backend:latest
-
-  build:
-    runs-on: ubuntu-latest
+    #build another dockerfile and psuh to ghcr
     steps:
       - uses: actions/checkout@v2
       - name: Login to GitHub Container Registry
@@ -43,3 +41,8 @@ jobs:
           file: ./frontend/frontend-dockerfile
           push: true
           tags: ghcr.io/lagroucedric/mlops-exam-1-frontend:latest
+
+
+
+
+    
