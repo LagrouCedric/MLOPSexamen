@@ -4,43 +4,23 @@ on:
   push:
     branches: [ master ]
 
-#automate docker build and push to ghcr.io
-# jobs:
-#   build:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - uses: actions/checkout@v2
-#       - name: Build the Docker image
-#         run: docker build . --file api/exam-1-dockerfile --tag mlops-exam-1-backend
-#       - name: Login to GitHub Container Registry
-#         uses: docker/login-action@v1 
-#         with:
-#           registry: ghcr.io
-#           username: ${{ github.repository_owner }}
-#           password: ${{ secrets.TOKEN }}
-#       - name: Push the Docker image
-#         run: docker push ghcr.io/lagroucedric/mlops-exam-1-backend:latest
-
-#build docker image save as artifact and push that artifact to ghcr
 jobs:
+  #build docker file and push to ghcr
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Build the Docker image
-        run: docker build . --file api/exam-1-dockerfile --tag ghcr.io/lagroucedric/mlops-exam-1-backend
       - name: Login to GitHub Container Registry
-        uses: docker/login-action@v1 
+        uses: docker/login-action@v1
         with:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.TOKEN }}
-      - name: Push the Docker image
-        run: docker push ghcr.io/lagroucedric/mlops-exam-1-backend:latest
-      - name: Save the Docker image
-        run: docker save ghcr.io/lagroucedric/mlops-exam-1-backend:latest > mlops-exam-1-backend.tar
-      - name: Upload the Docker image
-        uses: actions/upload-artifact@v2
+      - name: Build and push
+        id: docker_build
+        uses: docker/build-push-action@v2
         with:
-          name: mlops-exam-1-backend
-          path: mlops-exam-1-backend.tar
+          context: .
+          file: ./api/exam-1-dockerfile
+          push: true
+          tags: ghcr.io/lagroucedric/mlops-exam-1-backend:latest

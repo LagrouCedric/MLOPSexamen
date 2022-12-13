@@ -4,6 +4,8 @@ services:
     build:
       context: .
       dockerfile: api/exam-1-dockerfile
+    ports:
+      - "12345:8080"
   frontend:
     # build frontend with frontend dockerfile and tag it as lagroucedric/mlops-exam-1-frontend
     image: lagroucedric/mlops-exam-1-frontend
@@ -11,6 +13,6 @@ services:
       context: .
       dockerfile: frontend/frontend-dockerfile
     ports:
-      - "8080:8080"
+      - "5050:5050"
     
 
