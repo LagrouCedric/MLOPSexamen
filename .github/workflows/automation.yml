@@ -25,7 +25,7 @@ jobs:
           push: true
           tags: ghcr.io/lagroucedric/mlops-exam-1-backend:latest
 
-    build:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
