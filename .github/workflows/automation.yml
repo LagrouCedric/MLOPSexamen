@@ -2,7 +2,7 @@ name: MLOps Automation
 
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
 
 #automate docker build and push to ghcr.io
 jobs:
